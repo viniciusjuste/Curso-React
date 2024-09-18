@@ -1,0 +1,27 @@
+PRIMEIRO PASSO:
+
+Abrir o prompt de comando e dar o comando 'cd' e na frente colar o endereço da pasta, por exemplo:
+
+cd C:\Users\vinic_jmhc68q\OneDrive\Documentos\Curso-React\aula02(app)
+
+SEGUNDO PASSO:
+
+colar este comando:
+
+npx create-react-app app01
+
+no lugar deste "app01" pode ser colocado o nome que quiser.
+
+e depois é só aguardar a criação.
+
+TERCEIRO PASSO:
+
+Depois de criado, para abrir no Visual studio code, é só copiar o endereço da pasta que está o aplicativo criado, e dar o 'cd' e na frente o endereço, exemplo:
+
+ cd C:\Users\vinic_jmhc68q\OneDrive\Documentos\Curso-React\aula02(app)\app01
+
+E DEPOIS:
+
+Para abrir no visual studio code é só dar o comando:
+
+'code .'
