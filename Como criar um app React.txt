@@ -25,3 +25,7 @@ E DEPOIS:
 Para abrir no visual studio code é só dar o comando:
 
 'code .'
+
+Para rodar o app no navegador é só dar o seguinte comando no terminal:
+
+'npm start'

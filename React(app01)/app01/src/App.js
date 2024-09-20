@@ -1,10 +1,28 @@
 import React from "react";
+import Logo from './componentes/imgs/fatec.png';
 
 export default function App() {
-  return(
+
+  const canal = () => {
+    return 'CFB Drones'
+  }
+
+  function curso(nameCourse) {
+    return 'Curso de ' + nameCourse
+  }
+
+  return (
     <>
-    <p>CFB Cursos</p>
-    <p>Curso de React</p>
+      <section>
+        <header>
+          <p>{canal()}</p>
+          <p>{curso('Java')}</p>
+        </header>
+        <section>
+          <img src={Logo} />
+          <img src="img/Minha-foto.jpeg" />
+        </section>
+      </section>
     </>
   )
 }
