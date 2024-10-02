@@ -7,16 +7,35 @@ import Led from './componentes/Led'
 
 export default function App() {
 
-  const [Ligado, setLigado] = useState(false)
+  const vermelho = { color: '#f00' };
+  const verde = { color: '#0f0' };
+  const azul = { color: '#00f' };
 
-  const cancelar = (obj) => {
-    return obj.preventDefault();
+  const [cor, setCor] = useState(1);
+
+  const retCor = (c) => {
+    if (c == 1) {
+      return vermelho
+    } else if (cor == 2) {
+      return verde
+    } else {
+      return azul
+    }
   }
+
+  const mudaCor = () => {
+    setCor(cor + 1)
+   if(cor > 2){
+    setCor(1)
+   }
+  }
+
+  setInterval(mudaCor, 1000);
 
   return (
     <>
-      <Led ligado={Ligado} setLigado={setLigado} />
-      <a href="http://www.youtube.com/cfbcursos" target="_blank" onClick={(e) => cancelar(e)}>CFB Cursos</a>
+      <h1 style={retCor(cor)}>CFB Cursos</h1>
+      <button onClick={() => mudaCor()}>Mudar cor</button>
     </>
   )
 }
