@@ -7,15 +7,23 @@ import Led from './componentes/Led'
 
 export default function App() {
 
-  const carros = ['HRV', 'Golf', 'Focus', 'Cruze', 'Argo'];
-  const listaCarros = carros.map(
-    (c, i) => 
-    <li key={i}>{i}-{c}</li>
-  )
+  const [nome, setNome] = useState('');
+  const [carro, setCarro] = useState('HRV')
+
 
   return (
     <>
-     <ul>{listaCarros}</ul>
+      <label>Digite seu nome:</label>
+      <input type="text" name="f_nome" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Digite seu nome" />
+      <p>Nome digitado: {nome}</p>
+
+      <label>Selecione um carro:</label>
+      <select value={carro} onChange={(e) => setCarro(e.target.value)}>
+        <option value='Golf'>Golf</option>
+        <option value='HRV'>HRV</option>
+        <option value='Prisma'>Prisma</option>
+      </select>
+      <p>Carro selecionado: {carro}</p>
     </>
   )
 }
