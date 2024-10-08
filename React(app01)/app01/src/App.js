@@ -7,23 +7,32 @@ import Led from './componentes/Led'
 
 export default function App() {
 
-  const [nome, setNome] = useState('');
-  const [carro, setCarro] = useState('HRV')
+  const [form, setForm] = useState({ "nome": "", "curso": "", "ano": "" });
 
+  const handlFormChange = (e) => {
+    if (e.target.getAttribute('name') == 'f_nome') {
+      setForm({ "nome": e.target.value, "curso": form.curso, "ano": form.ano });
+    } else if (e.target.getAttribute('name') == 'f_curso') {
+      setForm({ "nome": form.nome, "curso": e.target.value, "ano": form.ano });
+    } else {
+      setForm({ "nome": form.nome, "curso": form.curso, "ano": e.target.value });
+    }
+  }
 
   return (
     <>
-      <label>Digite seu nome:</label>
-      <input type="text" name="f_nome" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Digite seu nome" />
-      <p>Nome digitado: {nome}</p>
+      <label>Nome:</label>
+      <input type="text" name="f_nome" value={form.nome} onChange={(e) => handlFormChange(e)} placeholder="Digite seu nome" />
 
-      <label>Selecione um carro:</label>
-      <select value={carro} onChange={(e) => setCarro(e.target.value)}>
-        <option value='Golf'>Golf</option>
-        <option value='HRV'>HRV</option>
-        <option value='Prisma'>Prisma</option>
-      </select>
-      <p>Carro selecionado: {carro}</p>
+      <label>Curso:</label>
+      <input type="text" name="f_curso" value={form.curso} onChange={(e) => handlFormChange(e)} placeholder="Digite seu curso" />
+
+      <label>Ano:</label>
+      <input type="text" name="f_ano" value={form.ano} onChange={(e) => handlFormChange(e)} placeholder="Digite seu ano" />
+
+      <p>Nome digitado: {form.nome}</p>
+      <p>Curso digitado: {form.curso}</p>
+      <p>Ano digitado: {form.ano}</p>
     </>
   )
 }
