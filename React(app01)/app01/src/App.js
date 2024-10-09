@@ -4,35 +4,32 @@ import './App.css' // É assim que se importa o arquivo CSS
 import Footer, { getDate } from "./componentes/Footer"; // Importei o Footer e uma função que retorna o ano atual
 
 import Led from './componentes/Led'
+import Nota from "./componentes/Nota";
+import Resultado from "./componentes/Resultado";
 
 export default function App() {
 
-  const [form, setForm] = useState({ "nome": "", "curso": "", "ano": "" });
+  const [notas, setNotas] = useState({ 'nota1': '0', 'nota2': '0', 'nota3': '0', 'nota4': '0' });
 
-  const handlFormChange = (e) => {
-    if (e.target.getAttribute('name') == 'f_nome') {
-      setForm({ "nome": e.target.value, "curso": form.curso, "ano": form.ano });
-    } else if (e.target.getAttribute('name') == 'f_curso') {
-      setForm({ "nome": form.nome, "curso": e.target.value, "ano": form.ano });
-    } else {
-      setForm({ "nome": form.nome, "curso": form.curso, "ano": e.target.value });
+  const handlChangeNotas = (e) => {
+    if (e.target.getAttribute('num') == 1) {
+      setNotas({ 'nota1': e.target.value, 'nota2': '', 'nota3': '', 'nota4': '' });
+    } else if (e.target.getAttribute('num') == 2) {
+      setNotas({ 'nota1': '', 'nota2': e.target.value, 'nota3': '', 'nota4': '' });
+    } else if (e.target.getAttribute('num') == 3) {
+      setNotas({ 'nota1': '', 'nota2': '', 'nota3': e.target.value, 'nota4': '' });
+    } else if (e.target.getAttribute('num') == 4) {
+      setNotas({ 'nota1': '', 'nota2': '', 'nota3': '', 'nota4': e.target.value });
     }
   }
 
   return (
     <>
-      <label>Nome:</label>
-      <input type="text" name="f_nome" value={form.nome} onChange={(e) => handlFormChange(e)} placeholder="Digite seu nome" />
-
-      <label>Curso:</label>
-      <input type="text" name="f_curso" value={form.curso} onChange={(e) => handlFormChange(e)} placeholder="Digite seu curso" />
-
-      <label>Ano:</label>
-      <input type="text" name="f_ano" value={form.ano} onChange={(e) => handlFormChange(e)} placeholder="Digite seu ano" />
-
-      <p>Nome digitado: {form.nome}</p>
-      <p>Curso digitado: {form.curso}</p>
-      <p>Ano digitado: {form.ano}</p>
+      <Nota num={1} nota={notas.nota1} setNota={handlChangeNotas} />
+      <Nota num={2} nota={notas.nota2} setNota={handlChangeNotas} />
+      <Nota num={3} nota={notas.nota3} setNota={handlChangeNotas} />
+      <Nota num={4} nota={notas.nota4} setNota={handlChangeNotas} />
+      <Resultado somaNotas={parseFloat(notas.nota1) + parseFloat(notas.nota2) + parseFloat(notas.nota3) + parseFloat(notas.nota4)} />
     </>
   )
 }
