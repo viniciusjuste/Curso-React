@@ -10,6 +10,7 @@ class Classe extends React.Component {
            <>
             <h1>Primeiro componente de Classe</h1>
             <p>Canal: {this.props.canal}</p>
+            <p>Curso: {this.props.curso}</p>
            </>
         )
     }
