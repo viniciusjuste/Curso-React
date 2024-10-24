@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       <h1>Componentes de classe</h1>
-      <Carro />
+      <Carro fator={1}/>
     </>
   )
 
