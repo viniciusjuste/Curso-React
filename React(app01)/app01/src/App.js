@@ -5,10 +5,18 @@ import Carro from "./componentes/Carro";
 
 export default function App() {
 
+  const [carro, setCarro] = useState(true);
+
+  const mostrarOcultarCarro = () => {
+    setCarro(!carro);
+  }
+
   return (
     <>
       <h1>Componentes de classe</h1>
-      <Carro fator={1}/>
+      {carro ? <Carro /> : null}
+      
+      <button onClick={() => mostrarOcultarCarro()}>Ocultar</button>
     </>
   )
 
