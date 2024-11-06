@@ -8,38 +8,68 @@ import Info from "./componentes/Info";
 import Pagina1 from "./componentes/Pagina 1";
 import Pagina2 from "./componentes/Pagina 2";
 
+const carros = [
+  { categoria: 'Esporte', preco: '12000', modelo: 'Jeep' },
+  { categoria: 'Esporte', preco: '35000', modelo: 'Ferrari' },
+  { categoria: 'SUV', preco: '4000', modelo: 'HRV' },
+  { categoria: 'SUV', preco: '5000', modelo: 'T-cross' },
+  { categoria: 'Utilitario', preco: '8000', modelo: 'Cruze' },
+  { categoria: 'Utilitario', preco: '9000', modelo: 'Onix' }
+]
+
+const pesquisarCategoria = (cat, scat) => {
+  return (
+    <div>
+      <label>Informe a categoria:</label>
+      <input type="text" name={cat} value={cat} onChange={(e) => scat(e.target.value)} />
+    </div>
+  )
+}
+
 export default function App() {
 
-  const [pagina, setPagina] = useState(0);
+  const [categoria, setCategoria] = useState('');
 
-  useEffect(() => {
-    const url = window.location.href;
-    const urlSplit = url.split('?');
-    setPagina(urlSplit[1]);
-  })
+  const linhas = (cat) => {
 
-  const retornarPagina = () => {
-    if (pagina == 1) {
-      return <Pagina1 />;
-    } else if (pagina == 2) {
-      return <Pagina2 />;
-    } else {
-      return (
-        <div>
-          <button onClick={() => linksPagina(1)}>Pagina 1</button>
-          <button onClick={() => linksPagina(2)}>Pagina 2</button>
-        </div>
-      )
-    }
+    const li = [];
+    carros.forEach((carro, index) => {
+      if (carro.categoria.toUpperCase() === cat.toUpperCase() || cat.toUpperCase() === '') {
+        li.push(
+          <tr key={index}>
+            <td>{carro.categoria}</td>
+            <td>{carro.preco}</td>
+            <td>{carro.modelo}</td>
+          </tr>
+        )
+      }
+    })
+
+    return li
   }
 
-  const linksPagina = (number) => {
-    return window.open(`http://localhost:3000?${number}`, `_self`)
+  const tabelaCarros = (cat) => {
+    return (
+      <table border='1' style={{ borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Modelo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {linhas(cat)}
+        </tbody>
+      </table>
+    )
   }
 
   return (
     <>
-      {retornarPagina()}
+      {pesquisarCategoria(categoria, setCategoria)}
+      {tabelaCarros(categoria)}
     </>
   )
 
